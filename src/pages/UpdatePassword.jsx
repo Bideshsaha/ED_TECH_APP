@@ -51,7 +51,9 @@ const UpdatePassword = () => {
                 </p>
                 <form onSubmit={handleOnSubmit}>
                     <label className="relative">
-                        <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">New Password<sup>*</sup></p>
+                        <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">New Password
+                            <sup className="text-pink-200">*</sup>
+                        </p>
                     <input
                         required
                         type={showPassword ? "text" : "password"}

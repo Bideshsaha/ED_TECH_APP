@@ -24,7 +24,7 @@ const VerifyEmail = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [signupData, navigate])
 
-    const handleOnSubmit = (e) => {
+    const handleVerifyAndSignup = (e) => {
         e.preventDefault();
         const{accountType, firstName, lastName, email, password, confirmPassword} = signupData;
         dispatch(signUp(accountType, firstName, lastName, email, password, confirmPassword, otp, navigate))
@@ -32,11 +32,15 @@ const VerifyEmail = () => {
   return (
     <div className='min-h-[calc(100vh-3.5rem)] grid place-items-center'>
         {
-            loading ? (<div className="spinner"></div>) : (
+            loading ? (
+                <div>
+                    <div className="spinner"></div>
+                </div>
+            ) : (
                 <div className="max-w-[500px] p-4 lg:p-8">
                     <h1 className="text-richblack-5 font-semibold text-[1.875rem] leading-[2.375rem]">Verify Your Email</h1>
                     <p className="text-[1.125rem] leading-[1.625rem] my-4 text-richblack-100">We emailed you the six digit code to your email id , please check</p>
-                    <form onSubmit={handleOnSubmit}>
+                    <form onSubmit={handleVerifyAndSignup}>
                         <OtpInput
                             value={otp}
                             onChange={setOtp}
@@ -59,7 +63,21 @@ const VerifyEmail = () => {
                             Verify Email
                         </button>
                     </form>
-                    <div className="mt-6 flex items-center justify-between">   
+                    <div className="mt-6 flex items-center justify-between">
+                        <Link to="/signup">
+                        <p className="text-richblack-5 flex items-center gap-x-2">
+                            <BiArrowBack /> Back To Signup
+                        </p>
+                        </Link>
+                        <button
+                        className="flex items-center text-blue-100 gap-x-2"
+                        onClick={() => dispatch(sendOtp(signupData.email))}
+                        >
+                        <RxCountdownTimer />
+                        Resend it
+                        </button>
+                    </div>
+                    {/* <div className="mt-6 flex items-center justify-between">   
                         <Link to="/login">
                             <p className="text-richblack-5 flex items-center gap-x-2"><BiArrowBack /> Back To Login</p>                        
                         </Link>
@@ -69,7 +87,7 @@ const VerifyEmail = () => {
                             <RxCountdownTimer />
                             Resend It
                         </button>
-                    </div>
+                    </div> */}
                 </div>
             )
         }

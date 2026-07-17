@@ -1,4 +1,4 @@
-export default function Tab({ tabData, field, setField }) {
+export default function Tab ({ tabData, field, setField }) {
     return (
       <div
         style={{

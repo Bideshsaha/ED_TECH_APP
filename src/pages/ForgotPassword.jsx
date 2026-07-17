@@ -10,7 +10,6 @@ const ForgotPassword = () => {
     const [emailSent, setEmailSent] = useState(false);
     const [email, setEmail] = useState("");
     const {loading} = useSelector((state) => state.auth);
-
     const dispatch = useDispatch();
 
     const handleOnSubmit = (e) => {
